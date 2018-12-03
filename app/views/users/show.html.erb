@@ -1,0 +1,13 @@
+
+<h1>View User Details:</h1>
+<p><strong>Name: </strong><%=@user.full_name%></p>
+<p><strong>Email Address: </strong><%=@user.email%></p>
+<strong>Meetings: </strong>
+  <% @user.meetings.each do|m| %>
+    <p><%=m.title%></p>
+  <% end %>
+
+<hr>
+
+<%= link_to "Edit or Delete User", edit_user_path(@user) %><br>
+<%= link_to "View All Users", users_path%><br>
