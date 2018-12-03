@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  meeting: one
+  start_latitude: 1.5
+  start_longitude: 1.5
+  user_status: MyString
+
+two:
+  user: two
+  meeting: two
+  start_latitude: 1.5
+  start_longitude: 1.5
+  user_status: MyString
