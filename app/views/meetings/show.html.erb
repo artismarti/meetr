@@ -1,0 +1,13 @@
+
+<h1>View Meeting Details:</h1>
+<p><strong>Title: </strong><%=@meeting.title%></p>
+<p><strong>Date and Time: </strong><%=@meeting.date_time%></p>
+<strong>Users: </strong><br>
+  <% @meeting.users.each do|mu| %>
+    <p><%=link_to mu.full_name, user_path(mu)%></p>
+  <% end %>
+
+<hr>
+
+<%= link_to "Edit Meeting", edit_meeting_path(@meeting) %><br>
+<%= link_to "View All Meetings", meetings_path%><br>
