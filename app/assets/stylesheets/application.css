@@ -24,7 +24,17 @@ a {
 h1 {
     text-shadow: 1px 1px 1px orange;
 }
+h2 {
+    text-shadow: 1px 1px 1px green;
+}
 input[type=text] {
+    width: 35%;
+    padding: 12px 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    color: #333;
+}
+input[type=password] {
     width: 35%;
     padding: 12px 10px;
     margin: 5px 0;
