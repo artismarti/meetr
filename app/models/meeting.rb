@@ -2,6 +2,7 @@ class Meeting < ApplicationRecord
   has_many :user_meetings
   has_many :users, through: :user_meetings
   validates :date_time, presence: true
+  validates :title, presence: true
 
   before_save :default_values
   def default_values
