@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  midpoint_latitude: 1.5
+  midpoint_longitude: 1.5
+  date_time: 2018-12-03 14:55:42
+
+two:
+  title: MyString
+  midpoint_latitude: 1.5
+  midpoint_longitude: 1.5
+  date_time: 2018-12-03 14:55:42
