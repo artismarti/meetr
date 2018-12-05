@@ -1,12 +1,10 @@
-<% if flash[:errors] %>
-  <% flash[:errors].each do |e| %>
-    <p style="color: red;"> <%= e %> </p>
-  <% end %>
-<% else %>
-  <h1>User Details</h1>
-<% end %>
-<h2>Add New User:</h2>
-<%= render "form" %>
+<h1>Sign Up to MeetR</h1>
 
 <hr>
-<%= link_to "View All Users", users_path%><br>
+<%= form_for @user, :url => "/signup" do |f| %>
+  <%= f.label :email  %>
+  <%= f.text_field :email %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <%= f.submit %>
+<% end %>
