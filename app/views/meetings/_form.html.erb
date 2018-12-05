@@ -4,12 +4,8 @@
   <%= f.label :date_time %>
   <%= f.datetime_field :date_time %><br>
 
-  <%= f.label "Choose Creator" %><br>
-    <select name="meeting[creator_id]" id="meeting_creator_id">
-      <% @users.each do|u| %>
-        <option value="<%= u.id %>"><%= u.full_name %></option>
-      <% end %>
-    </select>
+  <input type="hidden" id="meeting_creator_id" name="meeting[creator_id]" value="<%= session[:user_id] %>">
+
     <br>
     <% @users.each do|u| %>
       <label for="meeting_invitee_id"><%= u.full_name %></label>

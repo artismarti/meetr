@@ -1,9 +1,8 @@
 
 
-
-
-
-
+User.destroy_all
+Meeting.destroy_all
+UserMeeting.destroy_all
 
 
 20.times do
