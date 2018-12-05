@@ -2,10 +2,14 @@
   <%= f.label :title %>
   <%= f.text_field :title %><br>
   <%= f.label :date_time %>
-  <%= f.text_field :date_time %><br>
+  <%= f.datetime_field :date_time %><br>
 
-  <%= f.label "Choose Creator" %>
-  <%#  FIX THIS %>
-  <%= f.collection_select @meeting.user_id, @users, :id, :first_name %>
+  <input type="hidden" id="meeting_creator_id" name="meeting[creator_id]" value="<%= session[:user_id] %>">
+
+    <br>
+    <% @users.each do|u| %>
+      <label for="meeting_invitee_id"><%= u.full_name %></label>
+      <input type="checkbox" id="meeting_invitee_id" name="meeting[invitee_ids][]" value="<%= u.id %>"><br>
+    <% end %>
   <%= f.submit %>
 <% end %>

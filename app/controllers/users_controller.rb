@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :find_user, only:[:show, :edit, :update, :destroy]
 
   def show
-    end
+    authorized_for(params[:id])
+  end
 
   def index
     @users = User.all
@@ -13,9 +14,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params(:first_name, :last_name, :email, :password))
+    @user = User.create!(user_params(:first_name, :last_name, :email, :password))
     if @user.valid?
       @user.save
+      session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
       flash[:errors] = @user.errors.full_messages

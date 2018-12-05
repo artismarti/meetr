@@ -56,9 +56,15 @@ input[type=button], input[type=submit], input[type=reset] {
     cursor: pointer;
 }
 select {
-    width: 50%;
+    width: 30%;
+		height: 30px;
     padding: 16px 10px;
     border: none;
     border-radius:4px;
     background-color: #f1f1f1;
 }
+::-webkit-datetime-edit { padding: 1em; }
+::-webkit-datetime-edit-fields-wrapper { background: #f1f1f1; }
+::-webkit-datetime-edit-text { color: green; padding: 0 0.3em; }
+::-webkit-inner-spin-button { display: none; }
+::-webkit-calendar-picker-indicator { background: orange; }
