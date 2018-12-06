@@ -21,8 +21,20 @@
   <input type="hidden" id="meeting_creator_id" name="meeting[creator_id]" value="<%= session[:user_id] %>">
 
     <% @users.each do|u| %>
+      <% if u.id != session[:user_id] %>
       <label for="meeting_invitee_id"><%= u.full_name %></label>
-      <input type="checkbox" id="meeting_invitee_id" name="meeting[invitee_ids][]" value="<%= u.id %>">
+      <input
+        type="checkbox"
+        id="meeting_invitee_id"
+        name="meeting[invitee_ids][]"
+        value="<%= u.id %>"
+        <% if @meeting.users.include?(u) %>
+          checked
+        <% end %>
+      > 
+      <% end %>
     <% end %>
+
+
   <%= f.submit %>
 <% end %>
