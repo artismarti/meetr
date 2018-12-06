@@ -4,7 +4,7 @@
 <p><strong>Email Address: </strong><%=@user.email%></p>
 <strong>Meetings: <%= link_to "add new meeting", new_meeting_path %></strong>
   <% @user.meetings.each do|m| %>
-    <p><%= link_to m.title, edit_meeting_path(m)%></p>
+    <p><%= link_to m.title, meeting_path(m)%></p>
   <% end %>
 
 <hr>

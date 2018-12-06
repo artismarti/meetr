@@ -1,8 +1,19 @@
 
 <h1>View Meeting Details:</h1>
+<% if (@meeting.user_meetings.select{|um| um.user_id == session[:user_id]})[0] %>
+    <% user_address = (@meeting.user_meetings.select{|um| um.user_id == session[:user_id]})[0].start_address %>
+  <% else %>
+    <% user_address = "Enter Your Address" %>
+<% end %>
 
 <p><strong>Title: </strong><%=@meeting.title%></p>
+<p><strong>Start Address: </strong><%=user_address%></p>
 <p><strong>Date and Time: </strong><%=@meeting.date_time%></p>
+<p><strong>Mid Point Latitude: </strong><%=@meeting.midpoint_latitude%></p>
+<p><strong>Mid Point Longitude: </strong><%=@meeting.midpoint_longitude%></p>
+<% meeting_place = @meeting.get_address(@meeting.midpoint_latitude, @meeting.midpoint_longitude) %>
+<p><strong>Meeting Place: </strong><%=link_to meeting_place, "https://www.google.co.uk/maps/search/#{meeting_place}", target: :_blank%></p>
+
 <strong>Users: </strong><br>
   <% @meeting.users.each do|mu| %>
     <p><%=link_to mu.full_name, user_path(mu)%></p>
