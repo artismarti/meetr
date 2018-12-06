@@ -10,15 +10,15 @@ end
   Meeting.create!(title: Faker::Nation.capital_city, date_time: Faker::Time.between(DateTime.now + 1, DateTime.now+20))
 end
 
-UserMeeting.create(user_id: 1, meeting_id: 1, start_latitude: 51.53289 , start_longitude: -0.13096 ,user_status: "created", start_address: Faker::Address.postcode )
+UserMeeting.create(user_id: 1, meeting_id: 1, start_latitude: 51.53289 , start_longitude: -0.13096 ,user_status: "created", start_address: "EC2A1AE" )
 UserMeeting.create(user_id: 8, meeting_id: 1, start_latitude: 51.48881 , start_longitude: -0.22293 ,user_status: "invited")
 UserMeeting.create(user_id: 9, meeting_id: 1, start_latitude: 51.52612 , start_longitude: -0.10722 ,user_status: "declined")
 
-UserMeeting.create(user_id: 2, meeting_id: 2, start_latitude: 51.53289 , start_longitude: -0.13096 ,user_status: "created", start_address: Faker::Address.postcode  )
+UserMeeting.create(user_id: 2, meeting_id: 2, start_latitude: 51.53289 , start_longitude: -0.13096 ,user_status: "created", start_address: "W68JS"  )
 UserMeeting.create(user_id: 4, meeting_id: 2, start_latitude: 51.48881 , start_longitude: -0.22293 ,user_status: "invited")
 UserMeeting.create(user_id: 5, meeting_id: 2, start_latitude: 51.48881 , start_longitude: -0.22693 ,user_status: "invited")
 UserMeeting.create(user_id: 11, meeting_id: 2, start_latitude: 51.52612 , start_longitude: -0.10722 ,user_status: "invited")
 
-UserMeeting.create(user_id: 11, meeting_id: 4, start_latitude: 51.53289 , start_longitude: -0.13096 ,user_status: "created", start_address: Faker::Address.postcode )
+UserMeeting.create(user_id: 11, meeting_id: 4, start_latitude: 51.53289 , start_longitude: -0.13096 ,user_status: "created", start_address: "N31EY" )
 UserMeeting.create(user_id: 18, meeting_id: 4, start_latitude: 51.48881 , start_longitude: -0.22293 ,user_status: "invited")
 UserMeeting.create(user_id: 19, meeting_id: 4, start_latitude: 51.52612 , start_longitude: -0.10722 ,user_status: "declined")

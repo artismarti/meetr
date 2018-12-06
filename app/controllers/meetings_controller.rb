@@ -1,5 +1,5 @@
 class MeetingsController < ApplicationController
-  before_action :find_meeting, only:[:show, :edit, :update, :destroy, :existing_invitees]
+  before_action :find_meeting, only:[:show, :edit, :update, :destroy, :existing_invitees, :is_creator]
   before_action :existing_invitees, only:[:edit, :update]
 
   def show
@@ -41,6 +41,7 @@ class MeetingsController < ApplicationController
 
   def edit
     @users = User.all
+    @creator = is_creator
   end
 
   def update
@@ -51,20 +52,21 @@ class MeetingsController < ApplicationController
       deleted_invitees = []
       if @meeting.valid?
         @meeting.save
-        user_meeting_lat_lng = @meeting.user_meetings.select{|um| um.user_status == "created"}[0]
-        user_meeting_lat_lng.get_lat_lng(params[:meeting][:start_address])
-        user_meeting_lat_lng.save
-        @meeting.get_midpoint_lat(@meeting.get_lat_lng_hash)
-        @meeting.get_midpoint_lng(@meeting.get_lat_lng_hash)
-        @meeting.save
+        @user_meeting= UserMeeting.find_by(meeting_id: @meeting.id, user_id: current_user.id)
+        @user_meeting.update(:start_address => params[:meeting][:start_address])
+        byebug
+        @user_meeting.get_lat_lng(params[:meeting][:start_address])
         if (updated_invitees - @existing_invitees) == []
+          @meeting.recalculate_midpoint
           redirect_to meeting_path(@meeting) and return
         else
           new_invitees = updated_invitees - @existing_invitees
           deleted_invitees = @existing_invitees - updated_invitees
           if new_invitees
             new_invitees.each do |ni|
-              UserMeeting.create(:user_id => ni, :meeting_id => @meeting.id, :user_status => "invited", :start_address => "" )
+
+              @user_meeting = UserMeeting.create(:user_id => ni, :meeting_id => @meeting.id, :user_status => "invited", :start_address => params[:meeting][:start_address] )
+              @user_meeting.get_lat_lng(params[:meeting][:start_address])
             end
           end
           if deleted_invitees
@@ -73,6 +75,7 @@ class MeetingsController < ApplicationController
             end
           end
         end
+        @meeting.recalculate_midpoint
         redirect_to meeting_path(@meeting)
       else
         flash[:errors] = @meeting.errors.full_messages
@@ -88,6 +91,17 @@ class MeetingsController < ApplicationController
   end
 
   private
+  def is_creator
+    @user_meetings = UserMeeting.where(meeting_id: @meeting)
+    creator = false
+    @user_meetings.each do |um|
+      if um.user_status == "created" && um.user_id == current_user.id
+        creator = true
+      end
+    end
+    creator
+  end
+
   def find_meeting
     @meeting = Meeting.find(params[:id])
   end
