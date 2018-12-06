@@ -1,15 +1,28 @@
 <%= form_for @meeting do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %><br>
-  <%= f.label :date_time %>
-  <%= f.datetime_field :date_time %><br>
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :date_time %>
+    <%= f.datetime_field :date_time %>
+  </p>
+  <p>
+    <label>Enter Address</label>
+    <% if (@meeting.user_meetings.select{|um| um.user_id == session[:user_id]})[0] %>
+        <% user_address = (@meeting.user_meetings.select{|um| um.user_id == session[:user_id]})[0].start_address %>
+      <% else %>
+        <% user_address = "Enter Your Address" %>
+      <% end %>
 
+
+    <input type="text" id="start_address" name="meeting[start_address]" value="<%= user_address%>">
+  </p>
   <input type="hidden" id="meeting_creator_id" name="meeting[creator_id]" value="<%= session[:user_id] %>">
 
-    <br>
     <% @users.each do|u| %>
       <label for="meeting_invitee_id"><%= u.full_name %></label>
-      <input type="checkbox" id="meeting_invitee_id" name="meeting[invitee_ids][]" value="<%= u.id %>"><br>
+      <input type="checkbox" id="meeting_invitee_id" name="meeting[invitee_ids][]" value="<%= u.id %>">
     <% end %>
   <%= f.submit %>
 <% end %>
