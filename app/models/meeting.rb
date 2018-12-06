@@ -12,13 +12,18 @@ class Meeting < ApplicationRecord
   end
 
   def get_lat_lng_hash
-    @user_meetings = UserMeeting.where(meeting_id: self)
+    @user_meetings = self.user_meetings
     lat_lng = {}
     lats = @user_meetings.map{|um| um.start_latitude}
     lat_lng[:lat] = lats
-    lngs = @user_meetings.map{|um| um.start_latitude}
+    lngs = @user_meetings.map{|um| um.start_longitude}
     lat_lng[:lng] = lngs
     lat_lng
+  end
+  def recalculate_midpoint
+    self.get_midpoint_lat(self.get_lat_lng_hash)
+    self.get_midpoint_lng(self.get_lat_lng_hash)
+    self.save
   end
 
   def get_midpoint_lat(get_lat_lng_hash)
@@ -126,4 +131,7 @@ class Meeting < ApplicationRecord
     x, y, z, hyp = radian_calcs(l_hash)
    (atan2(y,x) * (180/PI)).round(5)
   end
+
+
+
 end

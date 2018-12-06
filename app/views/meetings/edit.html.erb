@@ -6,7 +6,13 @@
   <h1>Meeting Details</h1>
 <% end %>
 <h2>Edit:</h2>
-<%= render "form" %>
+<% if @creator %>
+  <%= render "form" %>
+    <% else  %>
+  <%= render "invitee_form" %>
+  <% end %>
+
+
 
 
 <hr>
