@@ -1,19 +1,13 @@
+<%= render "layouts/header" %>
 <% if flash[:errors] %>
   <% flash[:errors].each do |e| %>
     <p style="color: red;"> <%= e %> </p>
   <% end %>
 <% else %>
-  <h1>Meeting Details</h1>
+  <h1>Edit Meeting</h1>
 <% end %>
-<h2>Edit:</h2>
 <% if @creator %>
   <%= render "form" %>
     <% else  %>
   <%= render "invitee_form" %>
   <% end %>
-
-
-
-
-<hr>
-<%= link_to "View All Meetings", meetings_path%><br>

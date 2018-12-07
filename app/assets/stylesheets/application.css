@@ -1,11 +1,27 @@
 body {
+	background: url("/assets/background.jpg") no-repeat center center;
+	background-size: cover;
+  background-color: #f1f1f1;
 	margin: 10;
-	padding: 10;
+	padding: 15px;
 	border: 0;
 	font-size: 100%;
-	font: inherit;
 	vertical-align: baseline;
-  font: normal 18px/1.5 "Montserrat", helvetica, arial, sans-serif;
+  font: normal 17px/1.5 "Open Sans", helvetica, arial, sans-serif;
+	font-family: 'Open Sans', sans-serif;
+}
+* {
+    box-sizing: border-box;
+}
+
+.row {
+    display: flex;
+}
+
+/* Create two equal columns that sits next to each other */
+.column {
+    flex: 50%;
+    padding: 20px;
 }
 a {
   text-decoration: none;
@@ -20,23 +36,52 @@ a {
 {
   color: #faf3e7;
 }
+/* Header/Blog Title */
+.header {
+  padding: 5px;
+  text-align: center;
+  background: #f1f1f1;
+}
+
+.header h1 {
+  font-size: 40px;
+}
 
 h1 {
     text-shadow: 1px 1px 1px orange;
+		font-family: 'Pacifico', cursive;
+}
+.logo{
+	text-shadow: 1px 1px 1px orange;
+	font-family: 'Pacifico', cursive;
+}
+h1 + a{
+    text-shadow: 0.5px 0.5px 1px orange !important;
+		font-family: 'Pacifico', cursive;
 }
 h2 {
-    text-shadow: 1px 1px 1px green;
+		font-family: 'Pacifico', cursive;
+}
+h3 {
+		font-family: 'Pacifico', cursive;
 }
 input[type=text] {
-    width: 35%;
-    padding: 12px 10px;
+    width: 25%;
+    padding: 10px 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    color: #333;
+}
+input[type=datetime-local] {
+    width: 25%;
+    padding: 10px 10px;
     margin: 5px 0;
     box-sizing: border-box;
     color: #333;
 }
 input[type=password] {
-    width: 35%;
-    padding: 12px 10px;
+    width: 25%;
+    padding: 10px 10px;
     margin: 5px 0;
     box-sizing: border-box;
     color: #333;
@@ -54,6 +99,7 @@ input[type=button], input[type=submit], input[type=reset] {
     text-decoration: none;
     margin: 4px 2px;
     cursor: pointer;
+		float: left;
 }
 select {
     width: 30%;
@@ -68,3 +114,67 @@ select {
 ::-webkit-datetime-edit-text { color: green; padding: 0 0.3em; }
 ::-webkit-inner-spin-button { display: none; }
 ::-webkit-calendar-picker-indicator { background: orange; }
+form {
+    width: 70%;
+    margin: auto;
+}
+
+label, input {
+    /* in order to define widths */
+    display: inline-block;
+}
+
+label {
+    width: 30%;
+    /* positions the label text beside the input */
+    text-align: left;
+}
+
+label + input {
+    width: 30%;
+    /* large margin-right to force the next element to the new-line
+       and margin-left to create a gutter between the label and input */
+    margin: 0 2% 0 4%;
+}
+
+/* only the submit button is matched by this selector,
+   but to be sure you could use an id or class for that button */
+input + submit {
+    float: right;
+}
+ul {
+	list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #111;
+}
+.float-right{
+  float:right
+}
+
+li a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}

@@ -1,3 +1,4 @@
+<%= render "layouts/header" %>
 <h1>Log in</h1>
 <%= form_tag sessions_path do %>
 <p>
@@ -7,6 +8,6 @@
 <p>
   <%= label_tag :password %>
   <%= password_field_tag :password %>
-</p>  
-  <%= submit_tag %>
+</p>
+  <%= submit_tag "Login"%>
 <% end %>

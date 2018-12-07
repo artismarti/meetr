@@ -1,28 +1,38 @@
-<h2><%= @meeting.title %></h2>
-<h2><%= @meeting.date_time %></h2>
-<% meeting_place = @meeting.get_address(@meeting.midpoint_latitude, @meeting.midpoint_longitude) %>
-<h2>
-  Meeting Place:
-</h2>
-<%=link_to meeting_place, "https://www.google.co.uk/maps/search/#{meeting_place}", target: :_blank%>
+<div class="row">
+  <div class="column" ">
+    <h3>Title:
+    </h3><%=@meeting.title%>
+    <h3>Date and Time:
+    </h3><%=@meeting.date_time.to_formatted_s(:rfc822)%>
+    <% meeting_place = @meeting.get_address(@meeting.midpoint_latitude, @meeting.midpoint_longitude) %>
+      <h3>Suggested Meeting Place:
+      </h3><%=link_to meeting_place, "https://www.google.co.uk/maps/search/#{meeting_place}", target: :_blank%>
 
-<%= form_for @meeting do |f| %>
-  <p>
-    <label>Enter Your Address</label>
-    <% if (@meeting.user_meetings.select{|um| um.user_id == session[:user_id]})[0] %>
+  </div>
+  <div class="column" ">
+    <%= form_for @meeting do |f| %>
+      <h3>Update Your Address</h3>
+      <% if (@meeting.user_meetings.select{|um| um.user_id == session[:user_id]})[0] %>
         <% user_address = (@meeting.user_meetings.select{|um| um.user_id == session[:user_id]})[0].start_address %>
-      <% else %>
-        <% user_address = "Enter Your Address" %>
+        <% else %>
+          <% user_address = "Enter Your Address" %><% end %>
+        <input type="text" required id="start_address" name="meeting[start_address]" value="<%= user_address%>">
+        <input type="hidden" id="meeting_creator_id" name="meeting[creator_id]" value="<%= session[:user_id] %>">
+        <% @users.each do|u| %>
+          <p><label for="meeting_invitee_id"><%= u.full_name %></label>
+          <input
+            type="checkbox"
+            id="meeting_invitee_id"
+            name="meeting[invitee_ids][]"
+            value="<%= u.id %>"
+            <% if @meeting.users.include?(u) %>
+              checked
+            <% end %>
+          >
+        <% end %>
+        </p>
+        <%= f.submit %>
       <% end %>
 
-
-    <input type="text" id="start_address" name="meeting[start_address]" value="<%= user_address%>">
-  </p>
-  <input type="hidden" id="meeting_creator_id" name="meeting[creator_id]" value="<%= session[:user_id] %>">
-
-    <% @users.each do|u| %>
-      <label for="meeting_invitee_id"><%= u.full_name %></label>
-      <input type="checkbox" id="meeting_invitee_id" name="meeting[invitee_ids][]" value="<%= u.id %>">
-    <% end %>
-  <%= f.submit %>
-<% end %>
+  </div>
+</div>

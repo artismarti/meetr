@@ -1,3 +1,4 @@
+<%= render "layouts/header" %>
 <h1>View All Users</h1>
 <%@users.each do |u| %>
   <p><%= link_to u.full_name, user_path(u) %></p>

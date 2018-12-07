@@ -4,21 +4,14 @@
     <title>Meetr</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans:600|Pacifico|Roboto:500" rel="stylesheet"> 
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <% if flash[:authorized] %>
-      <p style="color: red;"><%= flash[:authorized] %></p>
-    <% end %>
-    <% if logged_in? %>
-      <p> You are logged in as <%= link_to current_user.full_name, current_user %> </p>
-      <%= link_to "Log Out", logout_path, method: 'post' %>
-    <% else %>
-      <%= link_to "Log In", login_path %>
-    <% end %>
     <%= yield %>
   </body>
 </html>
