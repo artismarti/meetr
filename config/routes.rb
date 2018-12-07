@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :venues
   resources :user_meetings
   resources :meetings
-  resources :users, only:[:show, :edit, :update, :destroy]
+  resources :users
 
   root 'users#new'
 
