@@ -1,25 +1,30 @@
-
-<h1>View Meeting Details:</h1>
+<%= render "layouts/header" %>
 <% if (@meeting.user_meetings.select{|um| um.user_id == session[:user_id]})[0] %>
     <% user_address = (@meeting.user_meetings.select{|um| um.user_id == session[:user_id]})[0].start_address %>
   <% else %>
     <% user_address = "Enter Your Address" %>
 <% end %>
+<p><%= link_to "Edit Meeting", edit_meeting_path(@meeting) %></p>
+<div class="row">
+  <div class="column"">
+    <h3>Title: </h3><%=@meeting.title%>
+    <h3>Your Start Address: </h3><%=user_address%>
+    <h3>Date and Time: </h3><%=@meeting.date_time.to_formatted_s(:rfc822)%>
+    <% meeting_place = @meeting.get_address(@meeting.midpoint_latitude, @meeting.midpoint_longitude) %>
+    <h3>Suggested Meeting Location: </h3>
+    <%=link_to meeting_place, "https://www.google.co.uk/maps/search/#{meeting_place}", target: :_blank%>
+    <%= image_tag(@meeting.get_map(@meeting.midpoint_latitude, @meeting.midpoint_longitude)) %>
 
-<p><strong>Title: </strong><%=@meeting.title%></p>
-<p><strong>Start Address: </strong><%=user_address%></p>
-<p><strong>Date and Time: </strong><%=@meeting.date_time%></p>
-<p><strong>Mid Point Latitude: </strong><%=@meeting.midpoint_latitude%></p>
-<p><strong>Mid Point Longitude: </strong><%=@meeting.midpoint_longitude%></p>
-<% meeting_place = @meeting.get_address(@meeting.midpoint_latitude, @meeting.midpoint_longitude) %>
-<p><strong>Meeting Place: </strong><%=link_to meeting_place, "https://www.google.co.uk/maps/search/#{meeting_place}", target: :_blank%></p>
-
-<strong>Users: </strong><br>
-  <% @meeting.users.each do|mu| %>
-    <p><%=link_to mu.full_name, user_path(mu)%></p>
-  <% end %>
-
-<hr>
-
-<%= link_to "Edit Meeting", edit_meeting_path(@meeting) %><br>
-<%= link_to "View All Meetings", meetings_path%><br>
+  </div>
+  <div class="column"">
+    <h3>People at Party!:</h3>
+      <% @meeting.users.each do|mu| %>
+        <p><i class="fa fa-user"> </i> <%=link_to mu.full_name, user_path(mu)%> - <%=  mu.user_meetings.map {|um| um.start_address}.first %></p>
+      <% end %>
+      <% @venues = Venue.all %>
+    <h3>Venue Suggestions: </h3>
+      <% @meeting.venues.each do|v| %>
+        <p> <i class="fa fa-map-marker" style="font-size:20px;color:red;"></i> <%= link_to v.name, "https://www.google.co.uk/maps/search/#{v.name}+#{v.address}", target: :_blank %></p>
+      <% end %>
+  </div>
+</div>

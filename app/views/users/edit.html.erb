@@ -1,9 +1,11 @@
+
+<%= render "layouts/header" %>
 <% if flash[:errors] %>
   <% flash[:errors].each do |e| %>
     <p style="color: red;"> <%= e %> </p>
   <% end %>
 <% else %>
-  <h1>User Details</h1>
+<h1>User Details</h1>
 <% end %>
 <h2>Edit or Delete:</h2>
 <%= render "form" %>

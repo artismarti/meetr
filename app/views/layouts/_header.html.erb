@@ -1,0 +1,17 @@
+<div class="header">
+  <h1>Meetr</h1>
+  <p>Let's meet in the middle</p>
+</div>
+<ul class="nav">
+  <li class="logo"><%= link_to "Meetr", meetings_path %></li>
+  <% if logged_in? %>
+    <li><%= link_to current_user.full_name, current_user %></li>
+    <li><%= link_to "Add Meeting", new_meeting_path %></li>
+    <li class="float-right"><%= link_to "Log Out", logout_path, method: 'post' %></li>
+  <% else %>
+    <li><%= link_to "Log In", login_path %></li>
+  <% end %>
+</ul>
+<% if flash[:authorized] %>
+  <p style="color: red;"><%= flash[:authorized] %></p>
+<% end %>

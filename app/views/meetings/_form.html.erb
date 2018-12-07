@@ -14,15 +14,13 @@
       <% else %>
         <% user_address = "Enter Your Address" %>
       <% end %>
-
-
-    <input type="text" id="start_address" name="meeting[start_address]" value="<%= user_address%>">
-  </p>
-  <input type="hidden" id="meeting_creator_id" name="meeting[creator_id]" value="<%= session[:user_id] %>">
-
+    <input type="text" required id="start_address" name="meeting[start_address]" value="<%= user_address%>">
+    </p>
+    <input type="hidden" id="meeting_creator_id" name="meeting[creator_id]" value="<%= session[:user_id] %>">
+    <h2>Invitees:</h2>
     <% @users.each do|u| %>
       <% if u.id != session[:user_id] %>
-      <label for="meeting_invitee_id"><%= u.full_name %></label>
+      <p><label for="meeting_invitee_id"><%= u.full_name %></label>
       <input
         type="checkbox"
         id="meeting_invitee_id"
@@ -31,7 +29,7 @@
         <% if @meeting.users.include?(u) %>
           checked
         <% end %>
-      > 
+      ></p>
       <% end %>
     <% end %>
 

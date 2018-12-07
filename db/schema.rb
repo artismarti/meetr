@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_05_171321) do
+ActiveRecord::Schema.define(version: 2018_12_06_141135) do
+
+  create_table "meeting_venues", force: :cascade do |t|
+    t.integer "venue_id"
+    t.integer "meeting_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "selected"
+    t.index ["meeting_id"], name: "index_meeting_venues_on_meeting_id"
+    t.index ["venue_id"], name: "index_meeting_venues_on_venue_id"
+  end
 
   create_table "meetings", force: :cascade do |t|
     t.string "title"
@@ -41,6 +51,14 @@ ActiveRecord::Schema.define(version: 2018_12_05_171321) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "venues", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "category"
   end
 
 end

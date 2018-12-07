@@ -1,6 +1,5 @@
-<h1>View All Meetings</h1>
+<%= render "layouts/header" %>
+<h1>All My Meetings</h1>
 <%@meetings.each do |m| %>
   <p><%= link_to m.title, meeting_path(m) %></p>
 <% end %>
-<hr>
-<%= link_to "Create New Meeting", new_meeting_path %>

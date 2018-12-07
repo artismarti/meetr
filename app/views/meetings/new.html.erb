@@ -3,10 +3,11 @@
     <p style="color: red;"> <%= e %> </p>
   <% end %>
 <% else %>
-  <h1>Meeting Details</h1>
+  <%= render "layouts/header" %>
 <% end %>
+
 <h2>Add New Meeting:</h2>
 <%= render "form" %>
 
 <hr>
-<%= link_to "View All Meetings", meetings_path%><br>
+<%= link_to "My Meetings", user_path(current_user)%><br>

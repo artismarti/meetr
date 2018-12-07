@@ -3,10 +3,12 @@ class MeetingsController < ApplicationController
   before_action :existing_invitees, only:[:edit, :update]
 
   def show
-    end
+    @meeting.get_venues(@meeting.midpoint_latitude,@meeting.midpoint_longitude)
+  end
 
   def index
-    @meetings = Meeting.all
+    @user_meetings = UserMeeting.where(user_id: current_user.id)
+    @meetings = Meeting.where(id: @user_meetings.map {|um| um.meeting_id})
   end
 
   def new
@@ -54,10 +56,10 @@ class MeetingsController < ApplicationController
         @meeting.save
         @user_meeting= UserMeeting.find_by(meeting_id: @meeting.id, user_id: current_user.id)
         @user_meeting.update(:start_address => params[:meeting][:start_address])
-        byebug
         @user_meeting.get_lat_lng(params[:meeting][:start_address])
         if (updated_invitees - @existing_invitees) == []
           @meeting.recalculate_midpoint
+          # @meeting.get_venues(@meeting.midpoint_latitude,@meeting.midpoint_longitude)
           redirect_to meeting_path(@meeting) and return
         else
           new_invitees = updated_invitees - @existing_invitees
