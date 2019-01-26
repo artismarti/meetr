@@ -1,24 +1,35 @@
-# README
+# Meetr
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Ruby on Rails app to find a meeting place that's at the centre of all the starting addresses provided.
 
-Things you may want to cover:
+## Models
 
-* Ruby version
+### User
+* first_name
+* last_name
+* email
+* password
 
-* System dependencies
+### Meeting
+* title
+* midpoint_latitude
+* midpoint_longitude
+* date_time
 
-* Configuration
+### User_Meeting (Join Table)
+* user_id  (validation for unique)
+* meeting_id   (validation for unique)
+* start_latitude
+* start_longitude
+* user_status (created | invited | confirmed | declined)
+* start_address
 
-* Database creation
+### Venue   
+* name
+* address
+* category 
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Meeting_Venue (Join Table)
+* meeting_id
+* venue_id
+* selected ---- boolean
