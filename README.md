@@ -2,6 +2,9 @@
 
 A Ruby on Rails app to find a meeting place that's at the centre of all the starting addresses provided.
 
+### Models
+### API details
+
 ## Models
 
 ### User
@@ -33,3 +36,32 @@ A Ruby on Rails app to find a meeting place that's at the centre of all the star
 * meeting_id
 * venue_id
 * selected ---- boolean
+
+## API Details
+Signed up for the HERE API: https://developer.here.com/
+
+
+## API to search for lat long from user entered address or postcode:
+```
+https://geocoder.api.here.com/6.2/geocode.json?app_id=API_ID&app_code=APP_CODE&searchtext=USERINPUTHERE
+```
+
+API needs:
+ `searchtext=USERINPUTHERE` 
+
+## API to get address from lat, long:
+```
+https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?app_id=API_ID&app_code=APP_CODE&mode=retrieveAddresses&prox=51.50463,-0.17189
+```
+
+`retrieveAddresses&prox=51.50463,-0.17189` - enter lat, long here
+
+## API to search for places to eat or drink around there:
+```
+https://geocoder.api.here.com/6.2/geocode.json?app_id=API_ID&app_code=APP_CODE&searchtext=ec2a1NT
+```
+
+API needs:
+ `cat=eat-drink` 
+`at=51.5162,-0.0864;r=100`
+(positive number is latitude, negative is longitude, *r* is radius)
