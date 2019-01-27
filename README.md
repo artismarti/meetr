@@ -2,14 +2,14 @@
 
 A Ruby on Rails app to help groups decide on a central location to meet at when people in the group are coming from different start locations. Once the app figures out the mid-point, it also suggests venues that people can meet at.
 
-### Models
+### [Models](#models)
 ### [Rails Routes](#rails-routes)
-### [3rd Party API details](#3rd-party-api-details)
+### [3rd Party API details](###3rd-party-api-details)
 ### [Algorithms](#algorithms)
 ### [User Journeys](#user-journeys)
 ### [Screenshots](#screenshots)
 -------------------------
-## [Models](#models)
+## Models
 
 ### User
 * first_name
