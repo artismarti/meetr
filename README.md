@@ -137,3 +137,12 @@ https://geocoder.api.here.com/6.2/geocode.json?app_id=API_ID&app_code=APP_CODE&s
 TBD
 
 ## Screenshots
+![Sign Up](https://user-images.githubusercontent.com/111852/51807353-a3732700-227d-11e9-8f1f-4bfe4b7eb544.png)
+* User can sign up to Meetr
+![Log in](https://user-images.githubusercontent.com/111852/51807350-9f470980-227d-11e9-8b7a-492549d36a1e.png)
+* User can login to Meetr!
+[User Details](https://user-images.githubusercontent.com/111852/51807346-9b1aec00-227d-11e9-8ef4-cec4cf9b091a.png)
+* User can view their profile and any meetings they're part of
+[Meeting Details](https://user-images.githubusercontent.com/111852/51807332-7d4d8700-227d-11e9-8708-eabd3d1ee26a.png)
+* User can view Meeting Details with central location and suggested venue.
+
