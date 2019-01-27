@@ -4,7 +4,7 @@ A Ruby on Rails app to help groups decide on a central location to meet at when 
 
 
 ### Models
-### Rails API
+### Rails Routes
 ### 3rd Party API details
 ### Algorithms
 ### User Journeys
@@ -120,3 +120,20 @@ https://geocoder.api.here.com/6.2/geocode.json?app_id=API_ID&app_code=APP_CODE&s
  `cat=eat-drink` 
 `at=51.5162,-0.0864;r=100`
 (positive number is latitude, negative is longitude, *r* is radius)
+
+## Algorithm
+1. The algorithm takes in all the starting locations using either postcode or street addresses.
+2. Convert locations to latitude and longitude.
+3. Convert latitude & longitude coordinates into radians.
+4. Convert latitude & longitude radians to cartesian (x,y,z) coordinates.
+5. Sum the individual cartesian coordinates (ex. x1+x2+x3, y1+y2+y3, z1+z2+z3)
+6. Convert summed cartesian coordinates to latitude and longitude for the midpoint (still in radians)
+7. Convert latitude & longitude cartesian coordinates to degrees.
+8. Ta-dah! This is your midpoint. 
+
+*Remember: The shortest distance between 2 points on a sphere is not necessarily a straight line*
+
+## User Journeys
+TBD
+
+## Screenshots
