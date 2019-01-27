@@ -4,7 +4,7 @@ A Ruby on Rails app to help groups decide on a central location to meet at when 
 
 ### [Models](#models)
 ### [Rails Routes](#rails-routes)
-### [3rd Party API details](###3rd-party-api-details)
+### [3rd Party API details](##3rd-party-api-details)
 ### [Algorithms](#algorithms)
 ### [User Journeys](#user-journeys)
 ### [Screenshots](#screenshots)
